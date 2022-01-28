@@ -17,27 +17,30 @@ public class Field : MonoBehaviour {
 	private Player[] _players = new Player[] {new Cross(), new Circle()}; // игроки
 	private int _playerIndex = 0; // индекс текущего игрока
 
-	private List<string> _crossWinCombinations = new List<string>() {
-		"0-1-1-10-1-1-10",
-		"-1-10-10-10-1-1",
-		"000-1-1-1-1-1-1",
-		"-1-1-1000-1-1-1",
-		"-1-1-1-1-1-1000",
-		"0-1-10-1-10-1-1",
-		"-10-1-10-1-10-1",
-		"-1-10-1-10-1-10"
-	};
-	
-	private List<string> _circleWinCombinations = new List<string>() {
-		"1-1-1-11-1-1-11",
-		"-1-11-11-11-1-1",
-		"111-1-1-1-1-1-1",
-		"-1-1-1111-1-1-1",
-		"-1-1-1-1-1-1111",
-		"1-1-11-1-11-1-1",
-		"-11-1-11-1-11-1",
-		"-1-11-1-11-1-11"
-	};
+	private int _cross = 0;
+	private int _circle = 1;
+
+	// private List<string> _crossWinCombinations = new List<string>() {
+	// 	"0-1-1-10-1-1-10",
+	// 	"-1-10-10-10-1-1",
+	// 	"000-1-1-1-1-1-1",
+	// 	"-1-1-1000-1-1-1",
+	// 	"-1-1-1-1-1-1000",
+	// 	"0-1-10-1-10-1-1",
+	// 	"-10-1-10-1-10-1",
+	// 	"-1-10-1-10-1-10"
+	// };
+	//
+	// private List<string> _circleWinCombinations = new List<string>() {
+	// 	"1-1-1-11-1-1-11",
+	// 	"-1-11-11-11-1-1",
+	// 	"111-1-1-1-1-1-1",
+	// 	"-1-1-1111-1-1-1",
+	// 	"-1-1-1-1-1-1111",
+	// 	"1-1-11-1-11-1-1",
+	// 	"-11-1-11-1-11-1",
+	// 	"-1-11-1-11-1-11"
+	// };
 
 	private void Awake() {
 		this._savePath = Path.Combine(Application.dataPath, saveFileName); // определение пути для сохранения матрицы
@@ -51,11 +54,11 @@ public class Field : MonoBehaviour {
 		if (this.IsMatrixFilled()) {
 			print("Draw");
 			this.GameOver();
-		} else if (this.IsWinner(1, this._crossWinCombinations)) {
-			print("Cross won");
+		} else if (this.IsWinner(this._cross)) {
+			print("cross won");
 			this.GameOver();
-		} else if (this.IsWinner(0, this._circleWinCombinations)) {
-			print("Circle won");
+		} else if (this.IsWinner(this._circle)) {
+			print("circle won");
 			this.GameOver();
 		}
 
@@ -132,15 +135,64 @@ public class Field : MonoBehaviour {
 		return true;
 	}
 
-	private bool IsWinner(int enemyNumber, List<string> winCombinations) {
-		string vector = "";
-		for (int i = 0; i < 9; i++) {
-			int n = this._fieldMatrix[i / 3, i % 3];
-			if (n == enemyNumber) {
-				n = -1;
+	private bool IsWinner(int player) {
+		/*
+		 * gorizontal win
+		 * [0,0] [0,1] [0,2]
+		 * [1,0] [1,1] [1,2]
+		 * [2,0] [2,1] [2,2]
+		 *
+		 * vertical win
+		 * [0,0] [1,0] [2,0]
+		 * [0,1] [1,1] [2,1]
+		 * [0,2] [1,2] [2,2]
+		 *
+		 * diagonal win
+		 * [0,0] [1,1] [2,2]
+		 * [0,2] [1,1] [2,0]
+		 */
+
+		string winCombination = "";
+		
+		switch (player) {
+			case 0: {
+				winCombination = "000";
+				break;
 			}
-			vector += $"{n}";
+			case 1: {
+				winCombination = "111";
+				break;
+			}
 		}
-		return winCombinations.Contains(vector);
+
+		List<string> winCheckList = new List<string>();
+		winCheckList.Add($"{this._fieldMatrix[0,0]}{this._fieldMatrix[0,1]}{this._fieldMatrix[0,2]}");
+		winCheckList.Add($"{this._fieldMatrix[1,0]}{this._fieldMatrix[1,1]}{this._fieldMatrix[1,2]}");
+		winCheckList.Add($"{this._fieldMatrix[2,0]}{this._fieldMatrix[2,1]}{this._fieldMatrix[2,2]}");
+		winCheckList.Add($"{this._fieldMatrix[0,0]}{this._fieldMatrix[1,0]}{this._fieldMatrix[2,0]}");
+		winCheckList.Add($"{this._fieldMatrix[0,1]}{this._fieldMatrix[1,1]}{this._fieldMatrix[2,1]}");
+		winCheckList.Add($"{this._fieldMatrix[0,2]}{this._fieldMatrix[1,2]}{this._fieldMatrix[2,2]}");
+		winCheckList.Add($"{this._fieldMatrix[0,0]}{this._fieldMatrix[1,1]}{this._fieldMatrix[2,2]}");
+		winCheckList.Add($"{this._fieldMatrix[0,2]}{this._fieldMatrix[1,1]}{this._fieldMatrix[2,0]}");
+
+		foreach (string combination in winCheckList) {
+			if (combination == winCombination) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
+
+	// private bool IsWinner(int enemyNumber, List<string> winCombinations) {
+	// 	string vector = "";
+	// 	for (int i = 0; i < 9; i++) {
+	// 		int n = this._fieldMatrix[i / 3, i % 3];
+	// 		if (n == enemyNumber) {
+	// 			n = -1;
+	// 		}
+	// 		vector += $"{n}";
+	// 	}
+	// 	return winCombinations.Contains(vector);
+	// }
 }
