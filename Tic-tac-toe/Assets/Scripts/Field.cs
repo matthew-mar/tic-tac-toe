@@ -20,30 +20,8 @@ public class Field : MonoBehaviour {
 	private int _cross = 0;
 	private int _circle = 1;
 
-	// private List<string> _crossWinCombinations = new List<string>() {
-	// 	"0-1-1-10-1-1-10",
-	// 	"-1-10-10-10-1-1",
-	// 	"000-1-1-1-1-1-1",
-	// 	"-1-1-1000-1-1-1",
-	// 	"-1-1-1-1-1-1000",
-	// 	"0-1-10-1-10-1-1",
-	// 	"-10-1-10-1-10-1",
-	// 	"-1-10-1-10-1-10"
-	// };
-	//
-	// private List<string> _circleWinCombinations = new List<string>() {
-	// 	"1-1-1-11-1-1-11",
-	// 	"-1-11-11-11-1-1",
-	// 	"111-1-1-1-1-1-1",
-	// 	"-1-1-1111-1-1-1",
-	// 	"-1-1-1-1-1-1111",
-	// 	"1-1-11-1-11-1-1",
-	// 	"-11-1-11-1-11-1",
-	// 	"-1-11-1-11-1-11"
-	// };
-
 	private void Awake() {
-		this._savePath = Path.Combine(Application.dataPath, saveFileName); // определение пути для сохранения матрицы
+		this._savePath = Path.Combine(Application.dataPath, saveFileName); // определение пути для сохранения матрицы   
 		this.GiveIdToCells(); // присвоение номера каждой клетке
 		this.FillMatrix(); // заполнение матрицы -1
 	}
