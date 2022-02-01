@@ -5,6 +5,6 @@ namespace Assets.Scripts {
 	
 	[System.Serializable]
 	public struct FieldMatrix {
-		public int[] Massiv;
+		public int[] vectorMatrix;  // одномерное отображение матрицы поля, для записи в json
 	}
 }
