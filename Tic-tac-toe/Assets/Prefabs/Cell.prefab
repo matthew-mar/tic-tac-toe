@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dabfb5e75da2eb9b48d4101ce8d23934, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc60b856a172f2ec6a72d417249e4fd9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 5197981200036309608}
   - component: {fileID: 5717945017056657819}
   - component: {fileID: 7863046956544348586}
-  - component: {fileID: 8719894266522011026}
+  - component: {fileID: 8190743830836259011}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8719894266522011026}
+      - m_Target: {fileID: 8190743830836259011}
         m_TargetAssemblyTypeName: CellButton, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
@@ -210,7 +210,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8719894266522011026
+--- !u!114 &8190743830836259011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,9 +219,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7400590577977211610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1e52bad0f24d5d4aa66b6e6eb65dd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7212ad4ff7d3daa9dae163d86a47e5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
 --- !u!1 &8585760724379717637
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +288,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 217da799f448003c19f3d3192c876d13, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1eb7fec54a0d534dbc28be78555ff61, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
