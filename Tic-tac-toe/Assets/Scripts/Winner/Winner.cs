@@ -16,7 +16,7 @@ public class Winner : MonoBehaviour {
 
 	public void SetWinner(string winner) {
 		if (!this._winnerCanvas.activeSelf) {
-			this._soundManager.WinSoundPlay();
+			this._soundManager.WinSoundPlay(draw: winner == "Draw");
 		}
 		this._winnerCanvas.SetActive(true);
 		this._winner.text = winner;

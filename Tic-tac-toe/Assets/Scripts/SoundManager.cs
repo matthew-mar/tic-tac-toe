@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] private AudioClip[] _playersSounds = new AudioClip[2];
     [SerializeField] private AudioClip _menuSound;
     [SerializeField] private AudioClip _winSound;
+    [SerializeField] private AudioClip _drawSound;
 
     private Manager _gameManager;
     private AudioSource _audioSource;
@@ -26,7 +27,11 @@ public class SoundManager : MonoBehaviour {
         this._audioSource.PlayOneShot(this._menuSound);
     }
 
-    public void WinSoundPlay() {
-        this._audioSource.PlayOneShot(this._winSound);
+    public void WinSoundPlay(bool draw) {
+        if (draw) {
+            this._audioSource.PlayOneShot(this._drawSound);
+        } else {
+            this._audioSource.PlayOneShot(this._winSound);   
+        }
     }
 }
