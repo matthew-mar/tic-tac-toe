@@ -11,6 +11,8 @@ public class GameMenu : MonoBehaviour {
 	
 	
 	public void ToMenu() {
+		this._gameManager.GetComponent<AnimationManager>().GameCanvasDown();
+		this._gameManager.GetComponent<AnimationManager>().AnimationReload();
 		this._gameCanvas.SetActive(false);
 		this._menuCanvas.SetActive(true);
 	}

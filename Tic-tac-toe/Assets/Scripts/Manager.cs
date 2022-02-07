@@ -16,10 +16,13 @@ public class Manager : MonoBehaviour {
 	private bool _gameOver = false;
 
 	private Winner _winner;
+
+	private AnimationManager _animationManager;
 	
 
 	private void Start() {
 		this._winner = this.GetComponent<Winner>();
+		this._animationManager = this.GetComponent<AnimationManager>();
 	}
 
 	private void Update() {
@@ -92,6 +95,7 @@ public class Manager : MonoBehaviour {
 	public void StartGame() {
 		this._winner.Hide();
 		this._field.ResetField();
+		this._animationManager.ShowField();
 		this._playerIndex = 0;
 		this._gameStarted = true;
 		this._gameOver = false;
