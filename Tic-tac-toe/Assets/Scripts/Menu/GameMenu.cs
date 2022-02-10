@@ -8,13 +8,17 @@ public class GameMenu : MonoBehaviour {
 	[SerializeField] private GameObject _menuCanvas;
 
 	[SerializeField] private Manager _gameManager;
-	
-	
-	public void ToMenu() {
-		this._gameManager.GetComponent<AnimationManager>().GameCanvasDown();
+
+
+	private void Menu() {
 		this._gameManager.GetComponent<AnimationManager>().AnimationReload();
 		this._gameCanvas.SetActive(false);
 		this._menuCanvas.SetActive(true);
+	}
+	
+	public void ToMenu() {
+		this._gameManager.GetComponent<AnimationManager>().GameCanvasDown();
+		Invoke("Menu", 1f);
 	}
 
 	public void Reset() {
